@@ -2,8 +2,10 @@
 
 The README uses three self-contained SVG images. Original design for Burhan
 Emin Yenier; the supplied mascot is preserved unchanged as `assets/mascot.png`.
-The hero samples that source into 80 × 48 monochrome ASCII characters, excluding
-the purple backdrop, and types each row from left to right. No scripts, external fonts, or third-party stats images
+The hero samples the mascot silhouette into 120 × 84 monochrome ASCII characters.
+It excludes the purple backdrop and reduces empty source margins, retaining a
+small square frame around the original face. Each row types from left to right;
+the full portrait still completes in about seven seconds. No scripts, external fonts, or third-party stats images
 are required to display the profile.
 
 `scripts/build_hero.py` creates the hero and toolkit. Run it with Python 3.11+

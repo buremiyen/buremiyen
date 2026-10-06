@@ -7,6 +7,10 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / 'assets'
+PORTRAIT_COLS = 120
+PORTRAIT_ROWS = 84
+PORTRAIT_SIZE = 308
+PORTRAIT_DURATION = 6.24
 STYLE = '''text{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
 .sans{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 .enter{animation:enter .7s ease-out both}.d1{animation-delay:.15s}.d2{animation-delay:1.2s}.d3{animation-delay:2.1s}.d4{animation-delay:7s}
@@ -31,25 +35,43 @@ def ascii_mascot():
     # Sample the provided source into SVG text, without changing the PNG.
     # Ignore its purple backdrop; preserve the face, hair, and white outline.
     with Image.open(ASSETS / 'mascot.png') as image:
-        sampled = image.convert('RGB').resize((80, 48), Image.Resampling.LANCZOS)
+        source = image.convert('RGB')
+        # Locate the source silhouette so empty purple margins no longer spend
+        # most of the character budget. This only samples the original PNG.
+        def background(rgb):
+            r, g, b = rgb
+            return b > r * 1.25 and r > 55 and g < r * .8
+
+        silhouette = Image.new('L', source.size)
+        silhouette.putdata([0 if background(pixel) else 255 for pixel in source.get_flattened_data()])
+        bounds = silhouette.getbbox()
+        if bounds is None:
+            raise ValueError('No mascot silhouette found')
+        left, top, right, bottom = bounds
+        side = min(round(max(right-left, bottom-top)*1.07), *source.size)
+        left = max(0, min(round((left+right-side)/2), source.width-side))
+        top = max(0, min(round((top+bottom-side)/2), source.height-side))
+        sampled = source.crop((left, top, left+side, top+side)).resize(
+            (PORTRAIT_COLS, PORTRAIT_ROWS), Image.Resampling.LANCZOS)
         rows = []
         ramp = '.:-=+*#%@'
-        for y in range(48):
+        for y in range(PORTRAIT_ROWS):
             row = ''
-            for x in range(80):
+            for x in range(PORTRAIT_COLS):
                 r, g, b = sampled.getpixel((x, y))
-                background = b > r * 1.25 and r > 55 and g < r * .8
                 brightness = .2126 * r + .7152 * g + .0722 * b
-                row += ' ' if background else ramp[round(brightness / 255 * (len(ramp)-1))]
+                row += ' ' if background((r, g, b)) else ramp[round(brightness / 255 * (len(ramp)-1))]
             rows.append(row)
     # One left-to-right character sweep per row, then keep the completed art.
     masks, lines, cursors = [], [], []
+    row_height = PORTRAIT_SIZE / PORTRAIT_ROWS
+    row_time = PORTRAIT_DURATION / PORTRAIT_ROWS
     for index, row in enumerate(rows):
-        y = index * (308 / 48)
-        delay = .65 + index * .13
-        masks.append(f'<clipPath id="row-{index}"><rect class="row-mask" x="0" y="{y:.3f}" width="308" height="6.417" style="animation-delay:{delay:.2f}s"/></clipPath>')
-        lines.append(f'<text clip-path="url(#row-{index})" x="0" y="{y+5.8:.3f}" fill="#e4d8fa" font-size="6.7" textLength="308" lengthAdjust="spacingAndGlyphs" xml:space="preserve">{escape(row)}</text>')
-        cursors.append(f'<rect class="row-cursor" x="0" y="{y:.3f}" width="3.85" height="6.417" fill="#6ee7c7" style="animation-delay:{delay:.2f}s,{delay:.2f}s"/>')
+        y = index * row_height
+        delay = .65 + index * row_time
+        masks.append(f'<clipPath id="row-{index}"><rect class="row-mask" x="0" y="{y:.3f}" width="308" height="{row_height:.4f}" style="animation-delay:{delay:.4f}s;animation-duration:{row_time:.6f}s;animation-timing-function:steps({PORTRAIT_COLS},end)"/></clipPath>')
+        lines.append(f'<text clip-path="url(#row-{index})" x="0" y="{y+row_height*.88:.3f}" fill="#e4d8fa" font-size="{row_height*1.08:.3f}" textLength="308" lengthAdjust="spacingAndGlyphs" xml:space="preserve">{escape(row)}</text>')
+        cursors.append(f'<rect class="row-cursor" x="0" y="{y:.3f}" width="{PORTRAIT_SIZE/PORTRAIT_COLS:.4f}" height="{row_height:.4f}" fill="#6ee7c7" style="animation-delay:{delay:.4f}s,{delay:.4f}s;animation-duration:{row_time:.6f}s,{row_time:.6f}s;animation-timing-function:steps({PORTRAIT_COLS},end),linear"/>')
     return '<defs>'+''.join(masks)+'</defs>'+''.join(lines+cursors)
 
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/hero-9f309c17df19.svg" width="1000" alt="BEY / Burhan Emin Yenier — the supplied mascot types itself in ASCII, row by row. Graphic Designer, 3D Artist and Game Developer. Designing visuals, building worlds and turning ideas into playable experiences." />
+<img src="./assets/hero-5e4f4881ff2d.svg" width="1000" alt="BEY / Burhan Emin Yenier — the supplied mascot types itself in ASCII, row by row. Graphic Designer, 3D Artist and Game Developer. Designing visuals, building worlds and turning ideas into playable experiences." />
 
 <br />
 
