@@ -11,6 +11,11 @@ after changing the identity, tools, or mascot. Install its portrait-only
 dependency with `python -m pip install -r scripts/requirements-art.txt` first.
 The daily calendar job does not install or use Pillow.
 
+Hero and toolkit filenames include a hash of their generated content. The
+generator updates the README links and removes superseded generated versions.
+This gives changed art a new URL so visitors do not retain an earlier design
+from a cached `raw/main` image. An unchanged rebuild keeps the same filenames.
+
 The nine application logos are vendored in `assets/icons` from the MIT-licensed
 [Skill Icons](https://github.com/tandpfun/skill-icons) set. Their upstream license
 and exact source commit are included there. They are embedded as vector SVG

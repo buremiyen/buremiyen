@@ -1,5 +1,6 @@
 """Build a typing ASCII portrait from the original mascot and local app logos."""
 from html import escape
+import hashlib
 from pathlib import Path
 import re
 from PIL import Image
@@ -72,6 +73,25 @@ def svg(height, title, description, body):
 <title id="title">{title}</title><desc id="desc">{description}</desc><style>{STYLE}</style>{body}</svg>\n'''
 
 
+def publish_art(stem, content):
+    # A new design gets a new URL. Browsers can otherwise keep the old raw/main
+    # image even after GitHub has rendered the latest README around it.
+    digest = hashlib.sha256(content.encode('utf-8')).hexdigest()[:12]
+    filename = f'{stem}-{digest}.svg'
+    (ASSETS / filename).write_text(content, encoding='utf-8')
+    readme = ROOT / 'README.md'
+    text = readme.read_text(encoding='utf-8')
+    pattern = rf'\./assets/{stem}(?:-[0-9a-f]{{12}})?\.svg'
+    text, replacements = re.subn(pattern, f'./assets/{filename}', text)
+    if replacements != 1:
+        raise ValueError(f'Expected one {stem} image in README; found {replacements}')
+    readme.write_text(text, encoding='utf-8')
+    for old in ASSETS.glob(f'{stem}*.svg'):
+        if old.name != filename and re.fullmatch(rf'{stem}(?:-[0-9a-f]{{12}})?\.svg', old.name):
+            old.unlink()
+    print(f'Published {filename}')
+
+
 def main():
     portrait = ascii_mascot()
     body = f'''
@@ -107,7 +127,7 @@ def main():
 <text x="52" y="471" fill="#e4ddef" font-size="16">Design it. Build it. Make it fun.</text>
 <text x="964" y="471" text-anchor="end" fill="#82798f" font-size="13">burhan / emin / yenier</text>
 </g></g>'''
-    (ASSETS / 'hero.svg').write_text(svg(500, 'BEY — Burhan Emin Yenier', 'The original BEY mascot types itself in ASCII, left to right, row by row. Graphic Designer, 3D Artist and Game Developer. Graphic Design student at Selçuk University. Designing visuals, building worlds and turning ideas into playable experiences.', body), encoding='utf-8')
+    publish_art('hero', svg(500, 'BEY — Burhan Emin Yenier', 'The original BEY mascot types itself in ASCII, left to right, row by row. Graphic Designer, 3D Artist and Game Developer. Graphic Design student at Selçuk University. Designing visuals, building worlds and turning ideas into playable experiences.', body))
     body = '''<g class="toolkit">
 <rect x="1" y="1" width="998" height="248" rx="18" fill="#101117" stroke="#302b40"/>
 <text x="32" y="38" fill="#6ee7c7" font-size="16">~ $ toolkit --creative</text>
@@ -122,7 +142,7 @@ def main():
     for index, (filename, label) in enumerate(apps):
         body += icon(filename, 58+index*104, 98, label, index)
     body += '</g>'
-    (ASSETS / 'toolkit.svg').write_text(svg(250, 'BEY creative toolkit — application logos', 'Photoshop, Illustrator, After Effects, Figma, Blender, Unity, C#, Git and GitHub logos. Focus: visual design, 3D modeling, game development, UI/UX and Creative AI.', body), encoding='utf-8')
+    publish_art('toolkit', svg(250, 'BEY creative toolkit — application logos', 'Photoshop, Illustrator, After Effects, Figma, Blender, Unity, C#, Git and GitHub logos. Focus: visual design, 3D modeling, game development, UI/UX and Creative AI.', body))
 
 
 if __name__ == '__main__':

@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="./assets/hero.svg" width="1000" alt="BEY / Burhan Emin Yenier — the supplied mascot types itself in ASCII, row by row. Graphic Designer, 3D Artist and Game Developer. Designing visuals, building worlds and turning ideas into playable experiences." />
+<img src="./assets/hero-9f309c17df19.svg" width="1000" alt="BEY / Burhan Emin Yenier — the supplied mascot types itself in ASCII, row by row. Graphic Designer, 3D Artist and Game Developer. Designing visuals, building worlds and turning ideas into playable experiences." />
 
 <br />
 
-<img src="./assets/toolkit.svg" width="1000" alt="Application logos: Photoshop, Illustrator, After Effects, Figma, Blender, Unity, C#, Git and GitHub. Focus: visual design, 3D, games, UI/UX and Creative AI." />
+<img src="./assets/toolkit-41d0300d5277.svg" width="1000" alt="Application logos: Photoshop, Illustrator, After Effects, Figma, Blender, Unity, C#, Git and GitHub. Focus: visual design, 3D, games, UI/UX and Creative AI." />
 
 <br />
 
