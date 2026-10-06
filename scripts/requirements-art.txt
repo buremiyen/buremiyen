@@ -1,0 +1,2 @@
+# Only needed to rebuild the ASCII portrait locally; daily calendar needs no packages.
+Pillow==12.3.0

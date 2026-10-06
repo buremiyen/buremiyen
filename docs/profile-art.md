@@ -1,12 +1,20 @@
 # BEY profile art
 
 The README uses three self-contained SVG images. Original design for Burhan
-Emin Yenier; the supplied mascot is preserved as `assets/mascot.png` and embedded
-unchanged in the hero. No scripts, external fonts, or third-party stats images
+Emin Yenier; the supplied mascot is preserved unchanged as `assets/mascot.png`.
+The hero samples that source into 80 × 48 monochrome ASCII characters, excluding
+the purple backdrop, and types each row from left to right. No scripts, external fonts, or third-party stats images
 are required to display the profile.
 
 `scripts/build_hero.py` creates the hero and toolkit. Run it with Python 3.11+
-after changing the identity, tools, or mascot. It needs no extra dependencies.
+after changing the identity, tools, or mascot. Install its portrait-only
+dependency with `python -m pip install -r scripts/requirements-art.txt` first.
+The daily calendar job does not install or use Pillow.
+
+The nine application logos are vendored in `assets/icons` from the MIT-licensed
+[Skill Icons](https://github.com/tandpfun/skill-icons) set. Their upstream license
+and exact source commit are included there. They are embedded as vector SVG
+content, so rendering does not depend on an external icon server.
 
 `scripts/update_contributions.py` fetches GitHub's public contribution HTML,
 checks that dates are complete, tooltips match levels, data is recent, and daily
@@ -22,7 +30,10 @@ calendar files when their content changes, using the repository-scoped built-in
 `GITHUB_TOKEN` with `contents: write`. If scheduled workflows become disabled
 after repository inactivity, re-enable the workflow in GitHub's Actions tab.
 
-All motion settles after a short entrance; the cursor blinks four times.
+The window opens first. The portrait types over about seven seconds, with one
+moving cursor per row. The identity and whoami lines type in alongside it.
+Application logos appear next, then the calendar grid. Motion finishes in about
+ten seconds and does not loop; reloading the page replays the opening.
 `prefers-reduced-motion` disables animations. Content remains visible when CSS
 animation is unsupported. The README's expandable text version provides a
 readable alternative on narrow screens and for assistive technologies.

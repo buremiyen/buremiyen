@@ -103,7 +103,7 @@ def render(data):
     parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="294" viewBox="0 0 1000 294" role="img" aria-labelledby="title desc">',
         '<title id="title">BEY — GitHub contribution calendar</title>',
         f'<desc id="desc">{data["total"]} contributions from {data["from"]} to {data["through"]}. Real GitHub data, refreshed daily.</desc>',
-        '<style>text{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}.day{animation:reveal .5s ease-out both}@keyframes reveal{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.day{animation:none}}</style>',
+        '<style>text{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}.graph{animation:reveal .5s ease-out 8.6s both}.day{animation:reveal .5s ease-out both}@keyframes reveal{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.day,.graph{animation:none}}</style><g class="graph">',
         '<rect x="1" y="1" width="998" height="292" rx="18" fill="#101117" stroke="#302b40"/>',
         '<text x="32" y="38" fill="#6ee7c7" font-size="16">~ $ git activity --last-year</text>',
         '<text x="966" y="38" text-anchor="end" fill="#82798f" font-size="13">SMALL STEPS. REAL PROGRESS.</text>',
@@ -116,7 +116,7 @@ def render(data):
         if date.day <= 7 and row == 0 and month not in months:
             months.add(month)
             parts.append(f'<text x="{74 + col * 16}" y="86" fill="#82798f" font-size="11">{calendar.month_abbr[date.month]}</text>')
-        parts.append(f'<rect class="day" x="{74 + col * 16}" y="{101 + row * 16}" width="12" height="12" rx="3" fill="{PALETTE[day["level"]]}" style="animation-delay:{(col * .012 + row * .025):.3f}s"><title>{date}: {day["count"]} contributions</title></rect>')
+        parts.append(f'<rect class="day" x="{74 + col * 16}" y="{101 + row * 16}" width="12" height="12" rx="3" fill="{PALETTE[day["level"]]}" style="animation-delay:{(8.6 + col * .012 + row * .025):.3f}s"><title>{date}: {day["count"]} contributions</title></rect>')
     for row, label in [(1, 'Mon'), (3, 'Wed'), (5, 'Fri')]:
         parts.append(f'<text x="32" y="{111 + row * 16}" fill="#82798f" font-size="11">{label}</text>')
     active = sum(d['count'] > 0 for d in days)
@@ -126,7 +126,7 @@ def render(data):
         '<text x="801" y="263" fill="#82798f" font-size="11">Less</text>']
     for index, color in enumerate(PALETTE):
         parts.append(f'<rect x="{838 + index * 17}" y="252" width="12" height="12" rx="3" fill="{color}"/>')
-    parts += ['<text x="930" y="263" fill="#82798f" font-size="11">More</text>', '</svg>']
+    parts += ['<text x="930" y="263" fill="#82798f" font-size="11">More</text>', '</g></svg>']
     return '\n'.join(parts) + '\n'
 
 
