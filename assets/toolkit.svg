@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="210" viewBox="0 0 1000 210" role="img" aria-labelledby="title desc">
+<title id="title">BEY creative toolkit</title><desc id="desc">Visual design: Photoshop, Illustrator, After Effects, Figma. 3D and games: Blender, Unity, C#. Creative technology: Git, GitHub, UI/UX, AR, Creative AI.</desc><style>text{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+.sans{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.enter{animation:enter .7s ease-out both}.d1{animation-delay:.15s}.d2{animation-delay:.3s}.d3{animation-delay:.45s}.d4{animation-delay:.6s}
+.cursor{animation:blink 1.3s step-end 4}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.enter,.cursor{animation:none}}</style>
+<rect x="1" y="1" width="998" height="208" rx="18" fill="#101117" stroke="#302b40"/>
+<text x="32" y="38" fill="#6ee7c7" font-size="16">~ $ toolkit --creative</text>
+<text x="966" y="38" text-anchor="end" fill="#82798f" font-size="13">IDEA → FORM → INTERACTION</text>
+<path d="M32 57H968" stroke="#282534"/><path d="M350 79V178M681 79V178" stroke="#282534"/>
+<g class="enter d1">
+<text x="32" y="90" fill="#a78bfa" font-size="13">01 / VISUAL DESIGN</text>
+<text class="sans" x="32" y="122" fill="#ece7f4" font-size="24" font-weight="600">Shape the idea.</text>
+<text x="32" y="151" fill="#ada5ba" font-size="15">Photoshop · Illustrator</text>
+<text x="32" y="176" fill="#ada5ba" font-size="15">After Effects · Figma</text>
+</g><g class="enter d2">
+<text x="378" y="90" fill="#a78bfa" font-size="13">02 / 3D &amp; GAMES</text>
+<text class="sans" x="378" y="122" fill="#ece7f4" font-size="24" font-weight="600">Build the world.</text>
+<text x="378" y="151" fill="#ada5ba" font-size="15">Blender · Unity · C#</text>
+<text x="378" y="176" fill="#ada5ba" font-size="15">3D modeling · Game development</text>
+</g><g class="enter d3">
+<text x="709" y="90" fill="#a78bfa" font-size="13">03 / CREATIVE TECH</text>
+<text class="sans" x="709" y="122" fill="#ece7f4" font-size="24" font-weight="600">Make it work.</text>
+<text x="709" y="151" fill="#ada5ba" font-size="15">Git · GitHub · UI/UX</text>
+<text x="709" y="176" fill="#ada5ba" font-size="15">AR · Creative AI</text>
+</g></svg>

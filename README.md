@@ -1,47 +1,39 @@
 <div align="center">
 
-# Hey, I'm Burhan 👋
+<img src="./assets/hero.svg" width="1000" alt="BEY / Burhan Emin Yenier — Graphic Designer, 3D Artist and Game Developer. Designing visuals, building worlds and turning ideas into playable experiences." />
 
-### Graphic Designer · 3D Artist · Game Developer
+<br />
 
-I like making **cool things that actually work.**
+<img src="./assets/toolkit.svg" width="1000" alt="Toolkit: Photoshop, Illustrator, After Effects, Figma; Blender, Unity, C#; Git, GitHub, UI/UX, AR and Creative AI." />
 
-<br>
+<br />
 
-🎨 Design &nbsp;·&nbsp; 🧊 3D &nbsp;·&nbsp; 🎮 Games &nbsp;·&nbsp; ✨ Creative Tech
+<img src="./assets/contributions.svg" width="1000" alt="BEY's real GitHub contribution calendar for the last year, automatically refreshed daily." />
 
-<br>
+<br />
 
-</div>
+<a href="https://www.behance.net/burhanyenier">Behance ↗</a> &nbsp; / &nbsp;
+<a href="https://www.linkedin.com/in/buremiyen">LinkedIn ↗</a>
 
-## A little about me
+<br /><br />
 
-I'm a Graphic Design student at **Selçuk University** with a soft spot for 3D, games and technology.
-
-Most of the time you'll find me designing something, building in Blender, experimenting in Unity, or finding unnecessarily complicated ways to turn an idea into something real.
-
-> **Design it. Build it. Make it fun.**
-
-<br>
-
-## Things I use
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=blender,unity,cs,photoshop,illustrator,aftereffects,figma,git,github&perline=9" alt="Tools I use" />
-</p>
-
-<br>
-
-<div align="center">
-
-### Currently exploring
-
-**3D · Game Development · UI/UX · AR · Creative AI**
-
-<br>
-
-![Profile Views](https://komarev.com/ghpvc/?username=buremiyen&style=flat&label=visitors)
-
-<sub>probably making something instead of sleeping.</sub> ☕
+<sub>Curiosity is part of the toolkit.</sub>
 
 </div>
+
+<details>
+<summary>whoami / text version</summary>
+
+**Burhan Emin Yenier** · Graphic Designer · 3D Artist · Game Developer
+
+Graphic Design student at **Selçuk University**. Designing visuals, building worlds, and turning ideas into playable experiences.
+
+- **Visual design:** Photoshop, Illustrator, After Effects, Figma
+- **3D & games:** Blender, Unity, C#
+- **Creative tech:** Git, GitHub, UI/UX, AR, Creative AI
+
+*Design it. Build it. Make it fun.*
+
+</details>
+
+<!-- Maintenance: docs/profile-art.md. Project lists intentionally omitted. -->
